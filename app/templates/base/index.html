@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- ####################################################################################################### -->
+
+<div class="wrapper col3">
+  <div id="featured_slide">
+    <div id="featured_wrap">
+      <ul id="featured_tabs">
+        <li><a href="#fc1">과목 소개<br />
+          <span>이 과목은 쉽습니다. 정말로</span></a></li>
+        <li><a href="#fc2">교수 소개<br />
+          <span>교수님을 소개하는 한줄 멘트</span></a></li>
+        <li><a href="#fc3">베어드 학부 소개<br />
+          <span>베어드 학부는 좋습니다.</span></a></li>
+        <li class="last"><a href="#fc4">숭실대학교<br />
+          <span>스팬 4</span></a></li>
+      </ul>
+      <div id="featured_content">
+        <div class="featured_box" id="fc1"><img src="{{ url_for('static', filename='images/demo/1.gif') }}" alt="" />
+          <div class="floater"><a href="#">더 보기 &raquo;</a></div>
+        </div>
+        <div class="featured_box" id="fc2"><img src="{{ url_for('static', filename='images/demo/2.gif') }}" alt="" />
+          <div class="floater"><a href="#">더 보기 &raquo;</a></div>
+        </div>
+        <div class="featured_box" id="fc3"><img src="{{ url_for('static', filename='images/demo/3.gif') }}" alt="" />
+          <div class="floater"><a href="#">더 보기 &raquo;</a></div>
+        </div>
+        <div class="featured_box" id="fc4"><img src="{{ url_for('static', filename='images/demo/4.gif') }}" alt="" />
+          <div class="floater"><a href="#">더 보기 &raquo;</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="container">
+    <div id="hpage">
+      <ul>
+        <li>
+          <h2>공지 게시글1</h2>
+          <div class="imgholder"><a href="#"><img src="{{ url_for('static', filename='images/demo/200x140.gif') }}" alt="" /></a></div>
+          <p>공지 게시글 첫번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop</p>
+          <p class="readmore"><a href="#">더 보기 &raquo;</a></p>
+        </li>
+        <li>
+          <h2>공지 게시글2</h2>
+          <div class="imgholder"><a href="#"><img src="{{ url_for('static', filename='images/demo/200x140.gif') }}" alt="" /></a></div>
+          <p>공지 게시글 두번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop</p>
+          <p class="readmore"><a href="#">더 보기 &raquo;</a></p>
+        </li>
+        <li>
+          <h2>인기 게시글</h2>
+          <div class="imgholder"><a href="#"><img src="{{ url_for('static', filename='images/demo/200x140.gif') }}" alt="" /></a></div>
+          <p>인기 게시글 첫번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop 인기 게시글 첫번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop인기 게시글 첫번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop</p>
+          <p class="readmore"><a href="#">더 보기 &raquo;</a></p>
+        </li>
+        <li class="last">
+          <h2>인기 게시글 2</h2>
+          <div class="imgholder"><a href="#"><img src="{{ url_for('static', filename='images/demo/200x140.gif') }}" alt="" /></a></div>
+          <p>인기 게시글 두번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop 인기 게시글 두번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop 인기 게시글 두번째 내용 가나다라마바사아 자차카타 파하 abcdefghijklmnop</p>
+          <p class="readmore"><a href="#">더 보기 &raquo;</a></p>
+        </li>
+      </ul>
+      <br class="clear" />
+    </div>
+  </div>
+</div>
+
+{% endblock %}

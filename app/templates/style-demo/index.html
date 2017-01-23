@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- ####################################################################################################### -->
+
+<div class="wrapper col3">
+    <div id="breadcrumb">
+        <ul>
+            <li class="first">You Are Here</li>
+            <li>&#187;</li>
+            <li><a href="#">Home</a></li>
+            <li>&#187;</li>
+            <li><a href="#">Grand Parent</a></li>
+            <li>&#187;</li>
+            <li><a href="#">Parent</a></li>
+            <li>&#187;</li>
+            <li class="current"><a href="#">Child</a></li>
+        </ul>
+    </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+    <div id="container">
+        <div id="content">
+            <h1>&lt;h1&gt; to &lt;h6&gt; - Headline Colour and Size Are All The Same</h1>
+            <img class="imgr" src="{{ url_for('static', filename='images/demo/imgr.gif') }}" alt="" width="125" height="125" />
+            <p>Aliquatjusto quisque nam consequat doloreet vest orna partur scetur portortis nam. Metadipiscing eget facilis elit sagittis felisi eger id justo maurisus convallicitur.</p>
+            <p>Dapiensociis <a href="#">temper donec auctortortis cumsan</a> et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidunt pellentum tincidunt vel lorem.</p>
+            <img class="imgl" src="{{ url_for('static',filename='images/demo/imgl.gif') }}" alt="" width="125" height="125" />
+            <p>This is a W3C compliant free website template from <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>.</p>
+            <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>.</p>
+            <p>Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.</p>
+            <h2>Table(s)</h2>
+            <table summary="Summary Here" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                    <th>Header 4</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="light">
+                    <td>Value 1</td>
+                    <td>Value 2</td>
+                    <td>Value 3</td>
+                    <td>Value 4</td>
+                </tr>
+                <tr class="dark">
+                    <td>Value 5</td>
+                    <td>Value 6</td>
+                    <td>Value 7</td>
+                    <td>Value 8</td>
+                </tr>
+                <tr class="light">
+                    <td>Value 9</td>
+                    <td>Value 10</td>
+                    <td>Value 11</td>
+                    <td>Value 12</td>
+                </tr>
+                <tr class="dark">
+                    <td>Value 13</td>
+                    <td>Value 14</td>
+                    <td>Value 15</td>
+                    <td>Value 16</td>
+                </tr>
+                </tbody>
+            </table>
+            <h3>자격증</h3>
+            <table summary="2010-2학기 1학년 ‘컴퓨터활용2' 교과목 수강신청 일자, 그룹별 수강기간 및 해당학과">
+                <colgroup>
+                    <col style="width: 90px">
+                    <col style="width: auto">
+                    <col style="width: auto">
+                    <col style="width: auto">
+                    <col style="width: 200px">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="fir" scope="col">인증</th>
+                    <th scope="col">자격증</th>
+                    <th scope="col">세부자격증</th>
+                    <th scope="col">불인정학과(부)</th>
+                </tr></thead>
+                <tbody>
+                <tr class="light">
+                    <th class="fir" rowspan="5" scope="row">Microsoft / YBM</th>
+                    <td class="fir" rowspan="5">MOS(Microsoft Office Special.ist)</td>
+                    <td>MOS Word Expert</td>
+                    <td>건축, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>MOS Access</td>
+                    <td>건축, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>MOS Outlook</td>
+                    <td>건축, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>MOS OneNote</td>
+                    <td>건축, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>MOS PowerPoint</td>
+                    <td>건축</td>
+                </tr>
+                <tr class="dark">
+                    <th class="fir" rowspan="4" scope="row">Adobe / Softbank</th>
+                    <td class="fir" rowspan="4">ACA (Adobe Certified Assoicate)</td>
+                    <td>ACA Photoshop</td>
+                    <td>정치외교</td>
+                </tr>
+                <tr>
+                    <td>ACA Premiere</td>
+                    <td>정치외교</td>
+                </tr>
+                <tr>
+                    <td>ACA Illustrator</td>
+                    <td>정치외교</td>
+                </tr>
+                <tr>
+                    <td>ACA Dreamweaver</td>
+                    <td>정치외교</td>
+                </tr>
+                <tr class="light">
+                    <th class="fir" rowspan="14" scope="row">한국생산성 본부</th>
+                    <td class="fir" rowspan="5">ITQ (Information Technology Qualification)</td>
+                    <td>한글</td>
+                    <td>정보통신전자공, 글로벌미디어</td>
+                </tr>
+                <tr>
+                    <td>MS워드</td>
+                    <td>정보통신전자공, 글로벌미디어</td>
+                </tr><tr><td>한글엑셀</td>
+                    <td>정보통신전자공, 글로벌미디어</td>
+                </tr>
+                <tr>
+                    <td>한글액세스</td>
+                    <td>정보통신전자공, 글로벌미디어</td>
+                </tr>
+                <tr>
+                    <td>한글파워포인트</td>
+                    <td>정보통신전자공, 글로벌미디어</td>
+                </tr>
+
+                <tr class="dark">
+                    <td rowspan="3">GTQ</td>
+                    <td>GTQ Photoshop 1급, 2급</td>
+                    <td>정치외교, 화학공</td>
+                </tr>
+                <tr>
+                    <td>GTQ Illustrator 1급, 2급</td>
+                    <td>정치외교, 화학공</td>
+                </tr>
+                <tr>
+                    <td>GTQ Flash 1급, 2급</td>
+                    <td>정치외교, 화학공</td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr class="light">
+                    <td class="fir" rowspan="5">ICDL (International Computer Driving Licence)</td>
+                    <td>ICDL 워드프로세싱</td>
+                    <td>화학공, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>ICDL 스프레드시트</td>
+                    <td>화학공, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>ICDL 프레젠테이션</td>
+                    <td>화학공, 정보통신전자공</td>
+                </tr>
+                <tr>
+                    <td>ICDL 데이터베이스</td>
+                    <td>화학공</td>
+                </tr>
+                <tr>
+                    <td>ICDL 웹및커뮤니케이션</td>
+                    <td>화학공</td>
+                </tr>
+
+                <tr class="dark">
+                    <th class="fir" scope="row">주)삼성SDS</th>
+                    <td>e-Test Professional</td>
+                    <td>e-Test Professional 4급 이상</td>
+                    <td>정치외교, 언론홍보, 건축, 정보통신전자공</td>
+                </tr>
+                <tr class="light">
+                    <th class="fir" rowspan="2" scope="row">대한상공 회의소</th>
+                    <td>워드프로세서</td>
+                    <td>워드프로세서(단일등급)</td>
+                    <td>건축, 정보통신전자공, 글로벌미디어</td>
+                </tr>
+                <tr class="dark">
+                    <td>컴퓨터활용능력</td>
+                    <td>컴퓨터활용능력 1급, 2급</td>
+                    <td>건축, 글로벌미디어</td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="comments">
+                <h2>Comments</h2>
+                <ul class="commentlist">
+                    <li class="comment_odd">
+                        <div class="author"><img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" /><span class="name"><a href="#">테스트 이름</a></span> <span class="wrote">wrote:</span></div>
+                        <div class="submitdate"><a href="#">타임스탬프 이곳에</a></div>
+                        <p>코멘트 테스트</p>
+                    </li>
+                    {% for comment in comments %}
+                    {% if comment.id % 2 %}
+                    <li class="comment_even">
+                        {% else %}
+                    <li class="comment_odd">
+                        {% endif %}
+
+                        <div class="author"><img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" /><span class="name"><a href="#">{{comment.name}}</a></span> <span class="wrote">wrote:</span></div>
+                        <div class="submitdate"><a href="#">August 4, 2009 at 8:35 am</a></div>
+                        <p>{{comment.comment}}</p>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+            <h2>Write A Comment</h2>
+            <div id="respond">
+                <form action="#" method="POST">
+                    <p>
+                        <input type="text" name="name" id="name" value="" size="22" required/>
+                        <label for="name"><small>Name (required)</small></label>
+                    </p>
+                    <p>
+                        <input type="text" name="email" id="email" value="" size="22" required/>
+                        <label for="email"><small>Mail (required)</small></label>
+                    </p>
+                    <p>
+                        <textarea name="comment" id="comment" cols="100%" rows="10" required></textarea>
+                        <label for="comment" style="display:none;"><small>Comment (required)</small></label>
+                    </p>
+                    <p>
+                        <input name="submit" type="submit" id="submit" value="Submit Form" />
+                        <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
+                    </p>
+                </form>
+            </div>
+        </div>
+        <div id="column">
+            <div class="subnav">
+                <h2>Secondary Navigation</h2>
+                <ul>
+                    <li><a href="#">Navigation - Level 1</a></li>
+                    <li><a href="#">Navigation - Level 1</a>
+                        <ul>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Navigation - Level 1</a>
+                        <ul>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                            <li><a href="#">Navigation - Level 2</a>
+                                <ul>
+                                    <li><a href="#">Navigation - Level 3</a></li>
+                                    <li><a href="#">Navigation - Level 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Navigation - Level 1</a></li>
+                </ul>
+            </div>
+            <div class="holder">
+                <h2 class="title"><img src="{{ url_for('static', filename='images/demo/60x60.gif') }}" alt="" />Nullamlacus dui ipsum conseque loborttis</h2>
+                <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>
+                <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+            </div>
+            <div id="featured">
+                <ul>
+                    <li>
+                        <h2>Indonectetus facilis leonib</h2>
+                        <p class="imgholder"><img src="{{ url_for('static', filename='images/demo/240x90.gif') }}" alt="" /></p>
+                        <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
+                        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="holder">
+                <h2>Lorem ipsum dolor</h2>
+                <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.</p>
+                <ul>
+                    <li><a href="#">Lorem ipsum dolor sit</a></li>
+                    <li>Etiam vel sapien et</li>
+                    <li><a href="#">Etiam vel sapien et</a></li>
+                </ul>
+                <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed. Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.</p>
+                <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{% endblock %}
