@@ -13,7 +13,11 @@ def index():
 def board():
     return render_template('board/index.html')
 
-@app.route('/style_demo', methods=['GET', 'POST'])
+@app.route('/board/free', methods=['GET', 'POST'])
+def board_free():
+    return render_template('board/free/index.html')
+
+@app.route('/style_demo', methods=['GET', 'POST', 'DELETE'])
 def style_demo():
     if request.method == 'POST':
         comment = Comment(
@@ -23,6 +27,14 @@ def style_demo():
         )
         db.session.add(comment)
         db.session.commit()
+        return redirect(request.url)
     comments = Comment.query.all()
 
     return render_template('style-demo/index.html', comments=comments)
+
+@app.route('/style_demo/delete_comment/<int:comment_id>', methods=['REMOVE', 'GET'])
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('style_demo'))

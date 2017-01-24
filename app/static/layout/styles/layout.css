@@ -107,6 +107,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #comments .commentlist .submitdate{font-size:smaller;}
 #comments .commentlist p{margin:10px 5px 10px 0; padding:0; font-weight:normal; text-transform:none;}
 #comments .commentlist li .avatar{float:right; border:1px solid #EEEEEE; margin:0 0 0 10px;}
+#comments .commentlist li .trash{float:right; border:1px solid #EEEEEE; margin:0 0 0 10px;}
 
 /* ----------------------------------------------Right Block------------------------------------- */
 
