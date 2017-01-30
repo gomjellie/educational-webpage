@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,8 +14,10 @@ app.config.update(dict(
     SQLALCHEMY_DATABASE_URI='sqlite:///educational.db',
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     ))
+
 db = SQLAlchemy(app)
-db_session = db.session()
 
 from app import models
 from app import views
+
+from app.helpers.jinja import regex_replace

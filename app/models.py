@@ -1,5 +1,6 @@
 from app import db
 from time import strftime
+import datetime
 
 class Post(db.Model):
     def __init__(self, title, writer, description):
@@ -23,21 +24,23 @@ class Post(db.Model):
         db.String(32),
         nullable=False
     )
-    # 작성 시간
-    # created_time = db.Column(
-    #     db.DateTime,
-    #     server_default=strftime("%m-%d-%Y %H:%M:%S")
-    # )
-    # 최근 수정 시간
-    # updated_time = db.Column(
-    #     db.DateTime,
-    #     server_default=strftime("%m-%d-%Y %H:%M:%S"),
-    #     onupdate=strftime("%m-%d-%Y %H:%M:%S")
-    # )
     # 내용
     description = db.Column(
         db.String(255),
         nullable=False
+    )
+    # 작성 시간
+    created_time = db.Column(
+        db.DateTime,
+        default=datetime.datetime.utcnow,
+        server_default=strftime("%Y-%m-%d %H:%M:%S")
+    )
+    # 최근 수정 시간
+    updated_time = db.Column(
+        db.DateTime,
+        default=datetime.datetime.now,
+        server_default=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        onupdate=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
 
 class Comment(db.Model):
@@ -66,4 +69,16 @@ class Comment(db.Model):
         db.String(1024),
         nullable=False
     )
-
+    #작성 시간
+    created_time = db.Column(
+        db.DateTime,
+        default=datetime.datetime.utcnow,
+        server_default=strftime("%Y-%m-%d %H:%M:%S")
+    )
+    #최근 수정 시간
+    updated_time = db.Column(
+        db.DateTime,
+        default=datetime.datetime.now,
+        server_default=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        onupdate=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    )

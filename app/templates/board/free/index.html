@@ -40,29 +40,31 @@
                 </thead>
                 <tbody>
                 <tr class="light">
-                    <td>Value 1</td>
-                    <td>Value 2</td>
-                    <td>Value 3</td>
-                    <td>Value 4</td>
+                    <td>Name 1</td>
+                    <td>Title 1</td>
+                    <td>Date 1</td>
+                    <td>Visitor 1</td>
                 </tr>
                 <tr class="dark">
-                    <td>Value 5</td>
-                    <td>Value 6</td>
-                    <td>Value 7</td>
-                    <td>Value 8</td>
+                    <td>Name 2</td>
+                    <td>Title 2</td>
+                    <td>Date 2</td>
+                    <td>Visitor 2</td>
                 </tr>
+
+                {% for post in posts %}
+                {% if post.id % 2 %}
                 <tr class="light">
-                    <td>Value 9</td>
-                    <td>Value 10</td>
-                    <td>Value 11</td>
-                    <td>Value 12</td>
-                </tr>
+                    {% else %}
                 <tr class="dark">
-                    <td>Value 13</td>
-                    <td>Value 14</td>
-                    <td>Value 15</td>
-                    <td>Value 16</td>
+                    {% endif %}
+                    <td>{{ post.writer }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.updated_time|string|regex_replace("\ \d{2}:\d{2}:\d{2}\.\d{6}", "") }}</td>
+                    <td>yet</td>
                 </tr>
+                {% endfor %}
+
                 </tbody>
             </table>
 
@@ -89,10 +91,10 @@
                             <span class="wrote">wrote:</span>
                         </div>
 
-                        <a href="{{ url_for('delete_comment', comment_id=comment.id) }}" class="delete">
+                        <a href="{{ url_for('board_free_delete_comment', comment_id=comment.id) }}" class="delete">
                             <img class="trash" src="{{ url_for('static', filename='images/demo/trash.png') }}" width="32" height="32" alt="" />
                         </a>
-                        <div class="submitdate"><a href="#">August 4, 2009 at 8:35 am</a></div>
+                        <div class="submitdate"><a href="#">{{ comment.updated_time|string|regex_replace('(\.\d{6})', '') }}</a></div>
                         <p>{{comment.comment}}</p>
                     </li>
                     {% endfor %}
