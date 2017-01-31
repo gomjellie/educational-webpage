@@ -25,6 +25,6 @@ def login():
             login_user(user=user, remember=True)
             json_res = {
                 'ok': True,
-                'message': str(username) + 'log in success'
+                'message': str(username) + ' log in success'
             }
         return jsonify(json_res)

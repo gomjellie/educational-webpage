@@ -1,9 +1,11 @@
 from flask import render_template, flash, make_response, session,\
-        request, url_for, redirect
+        request, url_for, redirect, jsonify
 from app import app, db
 from collections import defaultdict
 #from app.forms import RegistrationForm
 from app.models import Comment, Post, User
+from flask_login import login_user, logout_user, current_user
+import json
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -83,29 +85,42 @@ def register():
             email=request.form.get('email')
         )
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        json_res = {
+            'user_id': username,
+            'password': password
+        }
+        print(json_res)
+        user = User.query.filter_by(username=username).first()
+        print(user)
+        return jsonify(json_res)
 
 @app.route('/api/login', methods=["GET", "POST"])
-def login():
+def api_login():
     if request.method == 'POST':
         username = request.json['user_id']  # form['username']
         password = request.json['password']  # form['password']
-        users = User.query.all()
-        if username not in users:
+        user = User.query.filter_by(username=username).first()
+        if not user:
             json_res = {
                 'ok': False,
                 'message': 'Invalid user_id'
             }
-        elif User.query.filter_by(
-                username=username).\
-                first().password != password:
+        elif user.password != password:
             json_res = {
                 'ok': False,
                 'message': 'Invalide password'
             }
         else:
+            user.authenticated = True
+            login_user(user=user, remember=True)
             json_res = {
                 'ok': True,
-                'message': str(username)
+                'message': str(username) + ' log in success'
             }
         return jsonify(json_res)
 

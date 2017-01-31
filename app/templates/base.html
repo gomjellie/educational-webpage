@@ -17,6 +17,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.slidepanel.setup.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.ui.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.tabs.setup.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.login.js') }}"></script>
 </head>
 
 <body>
@@ -31,14 +32,14 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <div class="topbox">
         <h2>Teachers Login Here</h2>
-        <form action="#" method="post">
+        <form id="teacherForm" class="teacherForm" action="" method="post">
           <fieldset>
             <legend>Teachers Login Form</legend>
             <label for="teachername">Username:
-              <input type="text" name="teachername" id="teachername" value="" />
+              <input type="text" name="username" id="teachername" value="" />
             </label>
             <label for="teacherpass">Password:
-              <input type="password" name="teacherpass" id="teacherpass" value="" />
+              <input type="password" name="password" id="teacherpass" value="" />
             </label>
             <label for="teacherremember">
               <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
@@ -53,14 +54,14 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <div class="topbox last">
         <h2>Pupils Login Here</h2>
-        <form action="#" method="post">
+        <form id="pupilForm" action="#" method="post">
           <fieldset>
             <legend>Pupils Login Form</legend>
             <label for="pupilname">Username:
-              <input type="text" name="pupilname" id="pupilname" value="" />
+              <input type="text" name="username" id="pupilname" value="" />
             </label>
             <label for="pupilpass">Password:
-              <input type="password" name="pupilpass" id="pupilpass" value="" />
+              <input type="password" name="password" id="pupilpass" value="" />
             </label>
             <label for="pupilremember">
               <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
