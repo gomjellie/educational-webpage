@@ -227,7 +227,7 @@
                         <a href="{{ url_for('delete_comment', comment_id=comment.id) }}" class="delete">
                             <img class="trash" src="{{ url_for('static', filename='images/demo/trash.png') }}" width="32" height="32" alt="" />
                         </a>
-                        <div class="submitdate"><a href="#">{{ comment.updated_time|string|regex_replace('(\.\d{6})', '') }}</a></div>
+                        <div class="submitdate"><a href="#">{{ comment.updated_time|string|remove_milli_second }}</a></div>
                         <p>{{comment.comment}}</p>
                     </li>
                     {% endfor %}

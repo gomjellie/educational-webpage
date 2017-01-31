@@ -59,7 +59,11 @@
                 <tr class="dark">
                     {% endif %}
                     <td>{{ post.writer }}</td>
-                    <td>{{ post.title }}</td>
+                    <td>
+                        <a href="{{ url_for('board_free_id', post_id=post.id) }}" class="move">
+                            {{ post.title }}
+                        </a>
+                    </td>
                     <td>{{ post.updated_time|string|regex_replace("\ \d{2}:\d{2}:\d{2}\.\d{6}", "") }}</td>
                     <td>yet</td>
                 </tr>
@@ -69,60 +73,60 @@
             </table>
 
 
-            <div id="comments">
-                <h2>Comments</h2>
-                <ul class="commentlist">
-                    <li class="comment_odd">
-                        <div class="author"><img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" /><span class="name"><a href="#">테스트 이름</a></span> <span class="wrote">wrote:</span></div>
-                        <div class="submitdate"><a href="#">타임스탬프 이곳에</a></div>
-                        <p>코멘트 테스트</p>
-                    </li>
-                    {% for comment in comments %}
-                    {% if comment.id % 2 %}
-                    <li class="comment_even">
-                        {% else %}
-                    <li class="comment_odd">
-                        {% endif %}
-                        <div class="author">
-                            <img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" />
-                            <span class="name">
-                                <a href="#">{{comment.name}}</a>
-                            </span>
-                            <span class="wrote">wrote:</span>
-                        </div>
+            <!--<div id="comments">-->
+                <!--<h2>Comments</h2>-->
+                <!--<ul class="commentlist">-->
+                    <!--<li class="comment_odd">-->
+                        <!--<div class="author"><img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" /><span class="name"><a href="#">테스트 이름</a></span> <span class="wrote">wrote:</span></div>-->
+                        <!--<div class="submitdate"><a href="#">타임스탬프 이곳에</a></div>-->
+                        <!--<p>코멘트 테스트</p>-->
+                    <!--</li>-->
+                    <!--{% for comment in comments %}-->
+                    <!--{% if comment.id % 2 %}-->
+                    <!--<li class="comment_even">-->
+                        <!--{% else %}-->
+                    <!--<li class="comment_odd">-->
+                        <!--{% endif %}-->
+                        <!--<div class="author">-->
+                            <!--<img class="avatar" src="{{ url_for('static', filename='images/demo/avatar.gif') }}" width="32" height="32" alt="" />-->
+                            <!--<span class="name">-->
+                                <!--<a href="#">{{comment.name}}</a>-->
+                            <!--</span>-->
+                            <!--<span class="wrote">wrote:</span>-->
+                        <!--</div>-->
 
-                        <a href="{{ url_for('board_free_delete_comment', comment_id=comment.id) }}" class="delete">
-                            <img class="trash" src="{{ url_for('static', filename='images/demo/trash.png') }}" width="32" height="32" alt="" />
-                        </a>
-                        <div class="submitdate"><a href="#">{{ comment.updated_time|string|regex_replace('(\.\d{6})', '') }}</a></div>
-                        <p>{{comment.comment}}</p>
-                    </li>
-                    {% endfor %}
+                        <!--<a href="{{ url_for('board_free_delete_comment', comment_id=comment.id) }}" class="delete">-->
+                            <!--<img class="trash" src="{{ url_for('static', filename='images/demo/trash.png') }}" width="32" height="32" alt="" />-->
+                        <!--</a>-->
+                        <!--<div class="submitdate"><a href="#">{{ comment.updated_time|string|regex_replace('(\.\d{6})', '') }}</a></div>-->
+                        <!--<p>{{comment.comment}}</p>-->
+                    <!--</li>-->
+                    <!--{% endfor %}-->
 
-                </ul>
+                <!--</ul>-->
 
-            </div>
-            <h2>Write A Comment</h2>
-            <div id="respond">
-                <form action="#respond" method="POST">
-                    <p>
-                        <input type="text" name="name" id="name" value="" size="22" required/>
-                        <label for="name"><small>Name (required)</small></label>
-                    </p>
-                    <p>
-                        <input type="text" name="email" id="email" value="" size="22" required/>
-                        <label for="email"><small>Mail (required)</small></label>
-                    </p>
-                    <p>
-                        <textarea name="comment" id="comment" cols="100%" rows="10" required></textarea>
-                        <label for="comment" style="display:none;"><small>Comment (required)</small></label>
-                    </p>
-                    <p>
-                        <input name="submit" type="submit" id="submit" value="Submit Form" />
-                        <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
-                    </p>
-                </form>
-            </div>
+            <!--</div>-->
+            <!--<h2>Write A Comment</h2>-->
+            <!--<div id="respond">-->
+                <!--<form action="#respond" method="POST">-->
+                    <!--<p>-->
+                        <!--<input type="text" name="name" id="name" value="" size="22" required/>-->
+                        <!--<label for="name"><small>Name (required)</small></label>-->
+                    <!--</p>-->
+                    <!--<p>-->
+                        <!--<input type="text" name="email" id="email" value="" size="22" required/>-->
+                        <!--<label for="email"><small>Mail (required)</small></label>-->
+                    <!--</p>-->
+                    <!--<p>-->
+                        <!--<textarea name="comment" id="comment" cols="100%" rows="10" required></textarea>-->
+                        <!--<label for="comment" style="display:none;"><small>Comment (required)</small></label>-->
+                    <!--</p>-->
+                    <!--<p>-->
+                        <!--<input name="submit" type="submit" id="submit" value="Submit Form" />-->
+                        <!--<input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />-->
+                    <!--</p>-->
+                <!--</form>-->
+            <!--</div>-->
         </div>
         <div id="column">
             <div class="subnav">
