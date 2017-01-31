@@ -1,6 +1,8 @@
 from app import db, app
 from time import strftime
 import datetime
+from flask_login import LoginManager, login_required, login_user, \
+    logout_user, UserMixin
 
 class Post(db.Model):
     __tablename__ = 'post'
@@ -73,45 +75,94 @@ class Comment(db.Model):
     def __repr__(self):
         return '<Comment: {}>'.format(self.id)
 
-
 class User(db.Model):
+    __tablename__ = "users"
+    id = db.Column('user_id', db.Integer, primary_key=True)
+    username = db.Column('username', db.String(20), unique=True, index=True)
+    password = db.Column('password', db.String(10))
+    email = db.Column('email', db.String(50), unique=True, index=True)
+    registered_on = db.Column('registered_on', db.DateTime)
+    # 단과대학 ex) 경영대학, it대학, 공과대학
+    colleage = db.Column(db.String(32))
+    major = db.Column(db.String(32))
+    # 학번 ex) 20150318
+    student_id = db.Column(db.String(32))
 
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-        index=True
-    )
-    user_name = db.Column(
-        db.String(32),
-        nullable=False
-    )
-    korean_name = db.Column(
-        db.String(16),
-        nullable=False
-    )
-    email = db.Column(
-        db.String(32),
-        nullable=False
-    )
-    password = db.Column(
-        db.String(32),
-        nullable=False
-    )
-    colleage = db.Column(
-        db.String(32)
-    )
-    major = db.Column(
-        db.String(32)
-    )
-    student_id = db.Column(
-        db.String(32)
-    )
+    def __init__(self, username, password, email,
+                 authenticated=False):
+        self.username = username
+        self.password = password
+        self.email = email
+        self.registered_on = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.authenticated = authenticated
 
-    def __init__(selfself, user_name, korean_name, email, password):
-        user_name = user_name
-        korean_name = korean_name
-        password = password
-        email = email
+    def is_authenticated(self):
+        return self.authenticated
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id  # unicode(self.id)
+
+    def can_login(self, password):
+        return self.password == password
+
+
 
     def __repr__(self):
-        return '<User: {}>'.format(self.id)
+        return '<User %r>' % self.username
+
+# class User(UserMixin):
+#     def __init__(self, id):
+#         self.id = id
+#         self.name = "user" + str(id)
+#         self.password = self.name + "_secret"
+#
+#     def __repr__(self):
+#         return "<%d/%s/%s>".format(self.id, self.name, self.password)
+#
+# class User(db.Model, UserMixin):
+#
+#     id = db.Column(
+#         db.Integer,
+#         primary_key=True,
+#         index=True
+#     )
+#     user_name = db.Column(
+#         db.String(32),
+#         nullable=False
+#     )
+#     korean_name = db.Column(
+#         db.String(16),
+#         nullable=False
+#     )
+#     email = db.Column(
+#         db.String(32),
+#         nullable=False
+#     )
+#     password = db.Column(
+#         db.String(32),
+#         nullable=False
+#     )
+#     colleage = db.Column(
+#         db.String(32)
+#     )
+#     major = db.Column(
+#         db.String(32)
+#     )
+#     student_id = db.Column(
+#         db.String(32)
+#     )
+#
+#     def __init__(self, user_name, korean_name, email, password):
+#         user_name = user_name
+#         korean_name = korean_name
+#         password = password
+#         email = email
+#
+#     def __repr__(self):
+#         return '<User: {}>'.format(self.id)

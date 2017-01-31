@@ -3,7 +3,7 @@ from flask import render_template, flash, make_response, session,\
 from app import app, db
 from collections import defaultdict
 #from app.forms import RegistrationForm
-from app.models import Comment, Post
+from app.models import Comment, Post, User
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -73,6 +73,41 @@ def delete_comment(comment_id):
 @app.route('/account/new', methods=['GET', 'POST'])
 def new_account():
     return render_template('account/new/index.html')
+
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        user = User(
+            username=request.form.get('username'),
+            password=request.form.get('password'),
+            email=request.form.get('email')
+        )
+
+
+@app.route('/api/login', methods=["GET", "POST"])
+def login():
+    if request.method == 'POST':
+        username = request.json['user_id']  # form['username']
+        password = request.json['password']  # form['password']
+        users = User.query.all()
+        if username not in users:
+            json_res = {
+                'ok': False,
+                'message': 'Invalid user_id'
+            }
+        elif User.query.filter_by(
+                username=username).\
+                first().password != password:
+            json_res = {
+                'ok': False,
+                'message': 'Invalide password'
+            }
+        else:
+            json_res = {
+                'ok': True,
+                'message': str(username)
+            }
+        return jsonify(json_res)
 
 # @app.teardown_request
 # def shutdown_session(exception=None):
