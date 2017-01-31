@@ -32,7 +32,6 @@ def board_free_id(post_id):
             comment=request.form.get('comment'),
             post_id=post_id
         )
-
         db.session.add(comment)
         db.session.commit()
     post = Post.query.get_or_404(post_id)
