@@ -1,14 +1,13 @@
-from flask import Flask, Response, session
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import os
-from flask_login import LoginManager, login_required, login_user,\
-    logout_user, UserMixin
+from os import urandom
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-    SECRET_KEY=os.urandom(24),
+    SECRET_KEY=urandom(24),
     USERNAME='admin',
     PASSWORD='default',
     static_folder='static',
@@ -21,6 +20,8 @@ app.config.update(dict(
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "login_required"
+login_manager.login_message = "this is login message"
 
 from app import models
 from app import views

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body %}
+<div id="container">
+
+    <h2>Teachers Login Here</h2>
+    <form id="teacherForm" action="/login" method="POST">
+        <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+                <input type="text" name="username" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+                <input type="password" name="password" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+                <input class="checkbox" type="checkbox" name="remember" id="teacherremember" checked="checked" />
+                Remember me</label>
+            <p>
+                <input type="button" name="teacherlogin" id="teacherlogin" value="Login" />
+                &nbsp;
+                <input type="submit" name="teacherreset" id="teacherreset" value="submit" />
+            </p>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

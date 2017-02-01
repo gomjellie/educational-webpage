@@ -77,11 +77,16 @@ class Comment(db.Model):
 
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column('user_id', db.Integer, primary_key=True)
-    username = db.Column('username', db.String(20), unique=True, index=True)
-    password = db.Column('password', db.String(10))
-    email = db.Column('email', db.String(50), unique=True, index=True)
-    registered_on = db.Column('registered_on', db.DateTime)
+    id = db.Column(db.Integer, primary_key=True, index=True)
+    username = db.Column(db.String(20), unique=True, index=True)
+    password = db.Column(db.String(10))
+    email = db.Column(db.String(50), unique=True, index=True)
+    registered_on = db.Column(
+        db.DateTime,
+        default=datetime.datetime.now,
+        server_default=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        onupdate=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    )
     # 단과대학 ex) 경영대학, it대학, 공과대학
     colleage = db.Column(db.String(32))
     major = db.Column(db.String(32))
@@ -93,7 +98,6 @@ class User(db.Model):
         self.username = username
         self.password = password
         self.email = email
-        self.registered_on = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.authenticated = authenticated
 
     def is_authenticated(self):
@@ -110,8 +114,6 @@ class User(db.Model):
 
     def can_login(self, password):
         return self.password == password
-
-
 
     def __repr__(self):
         return '<User %r>' % self.username

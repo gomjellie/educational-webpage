@@ -32,7 +32,7 @@ Licence URI: http://www.os-templates.com/template-terms
       </div>
       <div class="topbox">
         <h2>Teachers Login Here</h2>
-        <form id="teacherForm" class="teacherForm" action="" method="post">
+        <form id="teacherForm" action="/login" method="POST">
           <fieldset>
             <legend>Teachers Login Form</legend>
             <label for="teachername">Username:
@@ -42,19 +42,19 @@ Licence URI: http://www.os-templates.com/template-terms
               <input type="password" name="password" id="teacherpass" value="" />
             </label>
             <label for="teacherremember">
-              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+              <input class="checkbox" type="checkbox" name="remember" id="teacherremember" checked="checked" />
               Remember me</label>
             <p>
-              <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" />
+              <input type="button" name="teacherlogin" id="teacherlogin" value="Login" />
               &nbsp;
-              <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
+              <input type="submit" name="teacherreset" id="teacherreset" value="submit" />
             </p>
           </fieldset>
         </form>
       </div>
       <div class="topbox last">
         <h2>Pupils Login Here</h2>
-        <form id="pupilForm" action="#" method="post">
+        <form id="pupilForm" action="#" method="POST">
           <fieldset>
             <legend>Pupils Login Form</legend>
             <label for="pupilname">Username:
@@ -64,10 +64,10 @@ Licence URI: http://www.os-templates.com/template-terms
               <input type="password" name="password" id="pupilpass" value="" />
             </label>
             <label for="pupilremember">
-              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              <input class="checkbox" type="checkbox" name="remember" id="pupilremember" checked="checked" />
               Remember me</label>
             <p>
-              <input type="submit" name="pupillogin" id="pupillogin" value="Login" />
+              <input type="button" name="pupillogin" id="pupillogin" value="Login" />
               &nbsp;
               <input type="reset" name="pupilreset" id="pupilreset" value="Reset" />
             </p>

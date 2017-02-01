@@ -4,15 +4,16 @@ from app import app, db
 from collections import defaultdict
 #from app.forms import RegistrationForm
 from app.models import Comment, Post, User
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 import json
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 def index():
-    return render_template('base/index.html')
+    return render_template('main/index.html')
 
 @app.route('/board', methods=['GET', 'POST'])
+@login_required
 def board():
     return render_template('board/index.html')
 
@@ -76,6 +77,10 @@ def delete_comment(comment_id):
 def new_account():
     return render_template('account/new/index.html')
 
+@app.route('/account/login_required', methods=['GET', 'POST'])
+def login_required():
+    return render_template('account/login-required/index.html')
+
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
@@ -85,18 +90,36 @@ def register():
             email=request.form.get('email')
         )
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        remember = request.form.get('remember')
         json_res = {
             'user_id': username,
-            'password': password
+            'password': password,
+            'remember': remember
         }
         print(json_res)
         user = User.query.filter_by(username=username).first()
         print(user)
+        if not user:
+            print(username + " doesn't exists")
+            json_res = {
+                'ok': False,
+                'message': 'Invalid user_id'
+            }
+        elif user.password != password:
+            print("password: " + password + " is wrong!")
+            json_res = {
+                'ok': False,
+                'message': 'Invalide password'
+            }
+        else:
+            print("login success")
+            user.authenticated = True
+            login_user(user=user, remember=remember)
         return jsonify(json_res)
 
 @app.route('/api/login', methods=["GET", "POST"])
