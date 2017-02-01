@@ -23,6 +23,18 @@
                 <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
             </p>
         </fieldset>
+        {% from "/helpers/_formhelpers.html" import render_field %}
+
+        <dl>
+            {{ render_field(form.username) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.confirm) }}
+            {{ render_field(form.accept_tos) }}
+        </dl>
+        <p>
+            <input type=submit value=Register>
+        </p>
     </form>
 </div>
 {% endblock %}

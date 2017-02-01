@@ -17,7 +17,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.slidepanel.setup.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.ui.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.tabs.setup.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.login.js') }}"></script>
+  <!--<script type="text/javascript" src="{{ url_for('static', filename='layout/scripts/jquery.login.js') }}"></script>-->
 </head>
 
 <body>
@@ -79,7 +79,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <div id="loginpanel">
       <ul>
         {% if current_user.is_authenticated %}
-        <li class="left">Hi &raquo; {{ current_user.username }}</li>
+        <li class="left">{{ current_user.username }}님</li>
         <li class="right"><a href="{{ url_for('logout') }}"> Log out</a></li>
         {% else %}
         <li class="left">Log In Here &raquo;</li>

@@ -1,16 +1,11 @@
 from flask import render_template, flash, make_response, session,\
-        request, url_for, redirect, jsonify
+        request, url_for, redirect, jsonify, abort
 from app import app, db
 #from app.forms import RegistrationForm
 from app.models import Comment, Post, User
 from flask_login import login_user, logout_user, current_user, login_required
-from urllib.parse import urlparse, urljoin
-
-def is_safe_url(target):
-    ref_url = urlparse(request.host_url)
-    test_url = urlparse(urljoin(request.host_url, target))
-    return test_url.scheme in ('http', 'https') and \
-           ref_url.netloc == test_url.netloc
+from app.helpers.wall import is_safe_url
+from app.forms import RegistrationForm
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -81,7 +76,21 @@ def delete_comment(comment_id):
 
 @app.route('/account/new', methods=['GET', 'POST'])
 def new_account():
-    return render_template('account/new/index.html')
+    form = RegistrationForm(request.form)
+    if request.method == 'POST':
+        if not form.validate():
+            print("invalid")
+            return redirect(request.referrer)
+        user = User(
+            username=form.username.data,
+            password=form.password.data,
+            email=form.email.data,
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash('Thanks for registering')
+        return redirect(url_for('index'))
+    return render_template('account/new/index.html', form=form)
 
 @app.route('/account/login_required', methods=['GET', 'POST'])
 def login_required():
@@ -133,6 +142,9 @@ def login():
             login_user(user=user, remember=remember)
 
     next_url = request.args.get('next')
+
+    if not is_safe_url(next_url):
+        return abort(403)
     return redirect(
         next_url or request.referrer)
 
@@ -161,9 +173,18 @@ def api_login():
         return jsonify(json_res)
 
 @app.errorhandler(404)
-def non_existant_route(error):
+def not_found(error):
     return jsonify({
-        "no": "such page"
+        "no": "such page",
+        "page": "not found",
+        "code": "404"
+    })
+
+@app.errorhandler(403)
+def forbidden(error):
+    return jsonify({
+        "page": "forbidden",
+        "code": "403"
     })
 
 # @app.teardown_request
