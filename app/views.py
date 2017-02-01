@@ -23,6 +23,7 @@ def board():
     return render_template('board/index.html')
 
 @app.route('/board/free', methods=['GET', 'POST', 'DELETE'])
+@login_required
 def board_free():
     posts = Post.query.all()
 
@@ -132,7 +133,6 @@ def login():
             login_user(user=user, remember=remember)
 
     next_url = request.args.get('next')
-    print("next url is " + next_url)
     return redirect(
         next_url or request.referrer)
 
@@ -162,7 +162,9 @@ def api_login():
 
 @app.errorhandler(404)
 def non_existant_route(error):
-    return jsonify({"no": "such page"})
+    return jsonify({
+        "no": "such page"
+    })
 
 # @app.teardown_request
 # def shutdown_session(exception=None):

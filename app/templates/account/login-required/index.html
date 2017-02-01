@@ -1,24 +1,25 @@
 {% extends "base.html" %}
 {% block body %}
 <div id="container">
-
-    <h2>Teachers Login Here</h2>
+    <h2>Login Required</h2>
     <form id="teacherForm" action="{{ url_for('login', next=request.args.get('next')) }}" method="POST">
         <fieldset>
             <legend>Teachers Login Form</legend>
             <label for="teachername">Username:
                 <input type="text" name="username" id="teachername" value="" />
             </label>
+            <br/>
             <label for="teacherpass">Password:
                 <input type="password" name="password" id="teacherpass" value="" />
             </label>
+            <br/>
             <label for="teacherremember">
                 <input class="checkbox" type="checkbox" name="remember" id="teacherremember" checked="checked" />
                 Remember me</label>
             <p>
-                <input type="button" name="teacherlogin" id="teacherlogin" value="Login" />
+                <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" />
                 &nbsp;
-                <input type="submit" name="teacherreset" id="teacherreset" value="submit" />
+                <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
             </p>
         </fieldset>
     </form>

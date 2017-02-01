@@ -45,16 +45,16 @@ Licence URI: http://www.os-templates.com/template-terms
               <input class="checkbox" type="checkbox" name="remember" id="teacherremember" checked="checked" />
               Remember me</label>
             <p>
-              <input type="button" name="teacherlogin" id="teacherlogin" value="Login" />
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" />
               &nbsp;
-              <input type="submit" name="teacherreset" id="teacherreset" value="submit" />
+              <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
             </p>
           </fieldset>
         </form>
       </div>
       <div class="topbox last">
         <h2>Pupils Login Here</h2>
-        <form id="pupilForm" action="#" method="POST">
+        <form id="pupilForm" action="/login" method="POST">
           <fieldset>
             <legend>Pupils Login Form</legend>
             <label for="pupilname">Username:
@@ -67,7 +67,7 @@ Licence URI: http://www.os-templates.com/template-terms
               <input class="checkbox" type="checkbox" name="remember" id="pupilremember" checked="checked" />
               Remember me</label>
             <p>
-              <input type="button" name="pupillogin" id="pupillogin" value="Login" />
+              <input type="submit" name="pupillogin" id="pupillogin" value="Login" />
               &nbsp;
               <input type="reset" name="pupilreset" id="pupilreset" value="Reset" />
             </p>
@@ -80,10 +80,10 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul>
         {% if current_user.is_authenticated %}
         <li class="left">Hi &raquo; {{ current_user.username }}</li>
-        <li class="right"><a href="{{ url_for('logout') }}"> log_out</a></li>
+        <li class="right"><a href="{{ url_for('logout') }}"> Log out</a></li>
         {% else %}
         <li class="left">Log In Here &raquo;</li>
-        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Administration</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Log in</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
         {% endif %}
       </ul>
     </div>

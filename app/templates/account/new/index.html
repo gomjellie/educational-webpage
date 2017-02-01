@@ -1,4 +1,28 @@
+
 {% extends "base.html" %}
 {% block body %}
-
+<div id="container">
+    <h2>New Account</h2>
+    <form id="teacherForm" action="{{ url_for('new_account') }}" method="POST">
+        <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+                <input type="text" name="username" id="teachername" value="" />
+            </label>
+            <br/>
+            <label for="teacherpass">Password:
+                <input type="password" name="password" id="teacherpass" value="" />
+            </label>
+            <br/>
+            <label>
+                <input type="text" name="department" id="department" value="" />
+            </label>
+            <p>
+                <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" />
+                &nbsp;
+                <input type="reset" name="teacherreset" id="teacherreset" value="Reset" />
+            </p>
+        </fieldset>
+    </form>
+</div>
 {% endblock %}
