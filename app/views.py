@@ -1,11 +1,16 @@
 from flask import render_template, flash, make_response, session,\
         request, url_for, redirect, jsonify
 from app import app, db
-from collections import defaultdict
 #from app.forms import RegistrationForm
 from app.models import Comment, Post, User
 from flask_login import login_user, logout_user, current_user, login_required
-import json
+from urllib.parse import urlparse, urljoin
+
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ('http', 'https') and \
+           ref_url.netloc == test_url.netloc
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -90,6 +95,11 @@ def register():
             email=request.form.get('email')
         )
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
@@ -101,9 +111,9 @@ def login():
             'password': password,
             'remember': remember
         }
+        print(str(request.form))
         print(json_res)
         user = User.query.filter_by(username=username).first()
-        print(user)
         if not user:
             print(username + " doesn't exists")
             json_res = {
@@ -120,7 +130,11 @@ def login():
             print("login success")
             user.authenticated = True
             login_user(user=user, remember=remember)
-        return jsonify(json_res)
+
+    next_url = request.args.get('next')
+    print("next url is " + next_url)
+    return redirect(
+        next_url or request.referrer)
 
 @app.route('/api/login', methods=["GET", "POST"])
 def api_login():
@@ -139,13 +153,16 @@ def api_login():
                 'message': 'Invalide password'
             }
         else:
-            user.authenticated = True
             login_user(user=user, remember=True)
             json_res = {
                 'ok': True,
                 'message': str(username) + ' log in success'
             }
         return jsonify(json_res)
+
+@app.errorhandler(404)
+def non_existant_route(error):
+    return jsonify({"no": "such page"})
 
 # @app.teardown_request
 # def shutdown_session(exception=None):

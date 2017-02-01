@@ -3,7 +3,7 @@
 <div id="container">
 
     <h2>Teachers Login Here</h2>
-    <form id="teacherForm" action="/login" method="POST">
+    <form id="teacherForm" action="{{ url_for('login', next=request.args.get('next')) }}" method="POST">
         <fieldset>
             <legend>Teachers Login Form</legend>
             <label for="teachername">Username:
