@@ -1,7 +1,7 @@
 from flask import render_template, flash, make_response, session,\
         request, url_for, redirect, jsonify, abort
 from app import app, db
-#from app.forms import RegistrationForm
+# from app.forms import RegistrationForm
 from app.models import Comment, Post, User
 from flask_login import login_user, logout_user, current_user, login_required
 from app.helpers.wall import is_safe_url
@@ -78,13 +78,29 @@ def delete_comment(comment_id):
 def new_account():
     form = RegistrationForm(request.form)
     if request.method == 'POST':
+        err_message = []
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
+
+        if not "@ssu.ac.kr" in email:
+            err_message.append("account must contain @ssu.ac.kr")
+        if User.query.filter_by(username=username).first():
+            err_message.append("username is already exists")
         if not form.validate():
             print("invalid")
-            return redirect(request.referrer)
+            return render_template('account/new/index.html', form=form,
+                                   err_message=err_message)
+
+        if len(err_message) > 0:
+            return render_template('account/new/index.html',
+                                   form=form,
+                                   err_message=err_message)
+
         user = User(
-            username=form.username.data,
-            password=form.password.data,
-            email=form.email.data,
+            username=username,
+            password=password,
+            email=email,
         )
         db.session.add(user)
         db.session.commit()

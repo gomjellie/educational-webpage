@@ -1,20 +1,30 @@
-from wtforms import Form, BooleanField, StringField, validators, PasswordField
+from wtforms import Form, BooleanField, StringField, PasswordField
+from wtforms.validators import Length, Email, EqualTo, DataRequired
+from wtforms.fields.html5 import EmailField
 
 class RegistrationForm(Form):
     username = StringField(
         'Username',
-        [validators.Length(min=4, max=25)]
+        [
+            Length(min=4,
+                   max=25,
+                   message="Field must be between 4 and 25 characters long."),
+        ]
     )
-    email = StringField(
+    email = EmailField(
         'Email Address',
-        [validators.Length(min=6, max=35)]
+        [
+            DataRequired(message="필수 항목입니다"),
+            Length(min=6, max=35),
+            Email("enter your valid email address.")
+        ]
     )
     password = PasswordField('New Password', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match')
+        DataRequired(),
+        EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Repeat Password')
     accept_tos = BooleanField(
         'I accept the TOS',
-        [validators.DataRequired()]
+        [DataRequired(message="약관에 동의 하셔야 합니다.")]
     )
