@@ -91,14 +91,22 @@ class User(db.Model):
     colleage = db.Column(db.String(32))
     major = db.Column(db.String(32))
     # 학번 ex) 20150318
-    student_id = db.Column(db.String(32))
+    student_id = db.Column(db.String(32), unique=True)
+    phone_number = db.Column(db.String(16))
+    new_info = db.Column(db.String(16))
 
     def __init__(self, username, password, email,
+                 major, student_id, phone_number,
+                 new_info,
                  authenticated=False):
         self.username = username
         self.password = password
         self.email = email
+        self.major = major
+        self.student_id = student_id
+        self.phone_number = phone_number
         self.authenticated = authenticated
+        self.new_info = new_info
 
     def is_authenticated(self):
         return self.authenticated

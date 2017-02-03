@@ -24,12 +24,18 @@ def create_user():
     user01 = User(
         username="user01",
         password="password",
-        email="email@mail.com"
+        email="email@mail.com",
+        major="susiso",
+        student_id="20150000",
+        phone_number="01012344321"
     )
     user02 = User(
         username="user02",
         password="password",
-        email="email@gmail.com"
+        email="email@gmail.com",
+        major="전정공",
+        student_id="20130123",
+        phone_number="01012345678"
     )
     db.session.add(user01)
     db.session.add(user02)

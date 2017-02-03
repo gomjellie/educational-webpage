@@ -82,6 +82,9 @@ def new_account():
         username = form.username.data
         password = form.password.data
         email = form.email.data
+        phone_number = form.phone_number.data
+        major = form.major.data
+        student_id = form.student_id.data
 
         if not "@ssu.ac.kr" in email:
             err_message.append("account must contain @ssu.ac.kr")
@@ -89,6 +92,7 @@ def new_account():
             err_message.append("username is already exists")
         if not form.validate():
             print("invalid")
+            print(form.errors)
             return render_template('account/new/index.html', form=form,
                                    err_message=err_message)
 
@@ -99,8 +103,12 @@ def new_account():
 
         user = User(
             username=username,
+            student_id=student_id,
             password=password,
             email=email,
+            phone_number=phone_number,
+            major=major,
+            new_info="new_info"
         )
         db.session.add(user)
         db.session.commit()

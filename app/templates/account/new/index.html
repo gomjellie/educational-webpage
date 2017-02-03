@@ -29,9 +29,12 @@
         {% endfor %}
         <dl>
             {{ render_field(form.username) }}
+            {{ render_field(form.student_id) }}
             {{ render_field(form.email) }}
             {{ render_field(form.password) }}
             {{ render_field(form.confirm) }}
+            {{ render_field(form.major) }}
+            {{ render_field(form.phone_number) }}
             {{ render_field(form.accept_tos) }}
         </dl>
         <p>
