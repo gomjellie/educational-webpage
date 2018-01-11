@@ -108,7 +108,6 @@ def new_account():
             email=email,
             phone_number=phone_number,
             major=major,
-            new_info="new_info"
         )
         db.session.add(user)
         db.session.commit()

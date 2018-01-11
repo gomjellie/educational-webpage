@@ -77,7 +77,7 @@ class Comment(db.Model):
 
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True, index=True)
+    id = db.Column(db.Integer, primary_key=True, index=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, index=True)
     password = db.Column(db.String(10))
     email = db.Column(db.String(50), unique=True, index=True)
@@ -88,16 +88,13 @@ class User(db.Model):
         onupdate=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
     # 단과대학 ex) 경영대학, it대학, 공과대학
-    colleage = db.Column(db.String(32))
     major = db.Column(db.String(32))
     # 학번 ex) 20150318
     student_id = db.Column(db.String(32), unique=True)
     phone_number = db.Column(db.String(16))
-    new_info = db.Column(db.String(16))
 
     def __init__(self, username, password, email,
                  major, student_id, phone_number,
-                 new_info,
                  authenticated=False):
         self.username = username
         self.password = password
@@ -106,7 +103,6 @@ class User(db.Model):
         self.student_id = student_id
         self.phone_number = phone_number
         self.authenticated = authenticated
-        self.new_info = new_info
 
     def is_authenticated(self):
         return self.authenticated
